@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITS365Perceptron</title>
+
+    <!-- Link to PyScript JavaScript for functionality -->
+    <script defer src="https://cdn.jsdelivr.net/npm/pyscript@0.9.0/pyscript.min.js"></script>
+
+    <!-- Link to External CSS File -->
+    <link rel="stylesheet" href="PerceptronWebsiteStyles.css">
+</head>
+
+<header>
+    <p>
+        Jake's Super Cool Perceptron 
+    </p>
+</header>
+
+<body>
+    <div class = "all-elements">
+        <div class = "switches-and-submit-button">
+            <div class = "directions">
+                <p>
+                    Use the switches below to make a P or an L.<br>My website will use a multilayer perceptron to interpret and reflect your input!
+                </p>
+            </div>
+            <div class="switches">
+                <!-- Create 16 toggle switches -->
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="submit-button">
+                <button id="submit" onclick="submitLetter()">Submit</button>
+            </div>
+        </div>
+
+        <div class="text-box">
+            <input type="text" id="letterDisplay" readonly>
+        </div>
+    </div>       
+</body>
+
+</html>
