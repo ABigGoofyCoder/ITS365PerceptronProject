@@ -125,11 +125,19 @@
             def get_input():
                 switch_values = []
             
+            def get_input():
+                switch_values = []
+                
                 for i in range(1, 17):
+                    # Use pydom to retrieve the switch input element, and access the checked property
                     switch_element = pydom[f"#switch{i}"][0]
-                    switch_values.append(int(switch_element.checked))  # 1 for checked (on), 0 for unchecked (off)
-            
-                np_switches = np.array(switch_values).reshape(1, -1)
+                    
+                    if switch_element:
+                        switch_values.append(int(switch_element.checked))  # 1 for checked (on), 0 for unchecked (off)
+                    else:
+                        switch_values.append(0)  # Default to 0 if the element is not found
+                
+                np_switches = np.array(switch_values).reshape(1, -1)  # Reshape to match expected input format
                 return np_switches
 
             #use perceptron formulas to predict letter and display it to the textbox
