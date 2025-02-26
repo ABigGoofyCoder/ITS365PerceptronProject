@@ -21,7 +21,7 @@
         <div class = "switches-and-submit-button">
             <div class = "directions">
                 <p>
-                    Use the switches below to make a P or an L.<br>My website will use a multilayer perceptron to interpret and reflect your input!
+                    Use the switches below to make a T or an L.<br>My website will use a multilayer perceptron to interpret and reflect your input!
                 </p>
             </div>
             <div class="switches">
@@ -135,9 +135,9 @@
             #use perceptron formulas to predict letter and display it to the textbox
             def classify_letter(event):
                 input = get_input()
-                result = np.dot(weights * input) + bias
+                result = np.dot(weights, input.T) + bias
                 predicted_class = 1 if result > 0 else 0
-                predicted_letter = 'P' if predicted_class == 1 else 'L'
+                predicted_letter = 'T' if predicted_class == 1 else 'L'
                 pydom["#letterDisplay"].value = predicted_letter
             
         </script>
