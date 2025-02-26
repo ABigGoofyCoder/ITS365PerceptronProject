@@ -134,9 +134,8 @@
             #import csv from url as pandas dataframe
             dataset_link = "https://raw.githubusercontent.com/ABigGoofyCoder/ITS365PerceptronProject/refs/heads/main/TrainingData.csv"
             dataset = pd.read_csv(open_url(dataset_link))
-
-            #Convert labels to numerical format that model can understand 
             print(dataset.columns)
+            #Convert labels to numerical format that model can understand 
             dataset['Labels'] = dataset['Labels'].replace({'T':1, 'L':0})
 
             
