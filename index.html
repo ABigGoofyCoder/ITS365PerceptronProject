@@ -133,7 +133,7 @@
                     else:
                         switch_values.append(0)  # Default to 0 if the element is not found
                 
-                np_switches = np.array(switch_values).reshape(1, -1)  # Reshape to match expected input format
+                np_switches = np.array(switch_values).reshape(1, 0)  # Reshape to match expected input format
                 return np_switches
 
             #use perceptron formulas to predict letter and display it to the textbox
