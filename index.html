@@ -93,7 +93,7 @@
             </div>
 
             <div class="submit-button">
-                <button id="submit" onclick="submitLetter()">Submit</button>
+                <button id="submit" py-click="classify_letter">Submit</button>
             </div>
         </div>
 
@@ -103,7 +103,43 @@
     </div>
 
     <section class = "pyscript">
-        
+        <div id = "mpl"></div>
+
+        <script type = "py" config = "pyscript.toml">
+            import numpy as np
+            import pandas as pd
+            from pyodide.http import open_url
+            from pyscript import display
+            from pyweb import pydom 
+
+            #import weights and bias retrieved from training
+            weights = np.array([-0.002010075630518424, 0.010078065197205378, 0.017194539072421904,
+                                0.011547005383792518, -0.010078065197205378, -0.0010012523486435197,
+                                0.011547005383792518, 0.0, -0.010078065197205378,
+                                -0.0010012523486435197, 0.011547005383792518, 0.0,
+                                -0.010078065197205378, -0.011547005383792518, -0.009211323729436768,
+                                -0.008728715609439696])
+            bias = -0.02
+
+            #get switch values and import them into a numpy array 
+            def get_switch_vals():
+                switch_values = []
+
+                for i in range(1, 17):
+                    switch_element = pydom[f"#switch{i}"][0]
+                    switch_values.append(int(switch_element.checked))
+                np_switches = np.array(switch_values).reshape(1, -1)
+                return np_switches
+            
+            #import csv from url as pandas dataframe
+            dataset_link = "https://raw.githubusercontent.com/ABigGoofyCoder/ITS365PerceptronProject/refs/heads/main/TrainingData.csv"
+            dataset = pd.read_csv(open_url(dataset_link))
+
+            #Convert labels to numerical format that model can understand 
+            dataset['Label'] = dataset['Label'].replace({'T':1, 'L':0})
+
+            
+        </script>
     </section>
 </body>
 
