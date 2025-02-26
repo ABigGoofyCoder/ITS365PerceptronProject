@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ITS365Perceptron</title>
     
+    <title>ITS365Perceptron</title>
+
+    <link rel="stylesheet" href="PerceptronWebsiteStyles.css">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
     
-    <link rel="stylesheet" href="PerceptronWebsiteStyles.css">
 </head>
 
 <header>
@@ -120,7 +122,6 @@
                                 -0.008728715609439696])
             bias = -0.02
 
-            #
             #Get switch input
             def get_input():
                 switch_values = []
@@ -139,11 +140,11 @@
 
             #use perceptron formulas to predict letter and display it to the textbox
             def classify_letter(event):
-                ##input = get_input()
-                ##result = np.dot(weights, input.T) + bias
-                ##predicted_class = 1 if result > 0 else 0
-                ##predicted_letter = 'T' if predicted_class == 1 else 'L'
-                ##pydom["#letterDisplay"].value = predicted_letter
+                input = get_input()
+                result = np.dot(weights, input.T) + bias
+                predicted_class = 1 if result > 0 else 0
+                predicted_letter = 'T' if predicted_class == 1 else 'L'
+                pydom["#letterDisplay"].value = predicted_letter
                 pydom["div#mpl"].html = "hello"
             
         </script>
