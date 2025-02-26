@@ -121,15 +121,14 @@
                                 -0.008728715609439696])
             bias = -0.02
 
-            #get switch values and import them into a numpy array 
             def get_switch_vals():
                 switch_values = []
-
+            
                 for i in range(1, 17):
                     switch_element = pydom[f"#switch{i}"][0]
-                    switch_values.append(int(switch_element.checked))
+                    switch_values.append(int(switch_element.checked))  # 1 for checked (on), 0 for unchecked (off)
+            
                 np_switches = np.array(switch_values).reshape(1, -1)
-                print(np_switches)
                 return np_switches
             
             #import csv from url as pandas dataframe
@@ -138,6 +137,7 @@
 
             #Convert labels to numerical format that model can understand 
             dataset['Labels'] = dataset['Labels'].replace({'T':1, 'L':0})
+
 
             
         </script>
