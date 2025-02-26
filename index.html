@@ -136,6 +136,7 @@
             dataset = pd.read_csv(open_url(dataset_link))
 
             #Convert labels to numerical format that model can understand 
+            print(dataset.columns)
             dataset['Labels'] = dataset['Labels'].replace({'T':1, 'L':0})
 
             
