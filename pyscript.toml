@@ -1,2 +1,2 @@
-packages = ["pandas", "numpy", "from pyweb import pydom"]
+packages = ["pandas", "numpy", "pyweb"]
 plugins = []
