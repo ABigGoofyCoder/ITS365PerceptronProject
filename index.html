@@ -129,6 +129,7 @@
                     switch_element = pydom[f"#switch{i}"][0]
                     switch_values.append(int(switch_element.checked))
                 np_switches = np.array(switch_values).reshape(1, -1)
+                print(np_switches)
                 return np_switches
             
             #import csv from url as pandas dataframe
