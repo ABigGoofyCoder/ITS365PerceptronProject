@@ -44,65 +44,6 @@ body {
     border: 5px solid gray;
 }
 
- 
-.toggle {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 30px;
-}
-
- 
-.toggle-checkbox {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
- 
-.toggle-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: grey;
-    border-radius: 30px;
-    transition: background-color 0.3s ease;
-}
-
-.toggle-slider::before {
-    content: "";
-    position: absolute;
-    height: 22px;
-    width: 22px;
-    border-radius: 50%;
-    background-color: white;
-    left: 4px;
-    top: 4px;
-    transition: transform 0.3s ease;
-}
-
- .toggle-checkbox:checked + .toggle-slider {
-    background-color: green;  
-}
-
- .toggle-checkbox:checked + .toggle-slider::before {
-    transform: translateX(30px);  
-}
-
-.submit-button button {
-    padding: 45px;
-    background-color: #004872;
-    color: white;
-    cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: xx-large;
-    font-variant-caps: all-petite-caps;
-    transition: background-color 0.3s ease;
-}
-
 .submit-button button:hover {
     background-color: #004872de;
 }
