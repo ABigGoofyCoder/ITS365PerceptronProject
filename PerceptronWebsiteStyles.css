@@ -36,12 +36,13 @@ body {
 .switches{
     display: grid;
     grid-template-columns: repeat(4, 1fr);  
-    grid-gap: 50px;  
+    grid-gap: 30px;  
     justify-content: center;
     align-items: center;
     background-color: #004872;
     padding: 10px;
     border: 5px solid gray;
+    margin: 0 auto
 }
 
 .submit-button button:hover {
