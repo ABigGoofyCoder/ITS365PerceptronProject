@@ -99,58 +99,62 @@
         </div>
         <div class="text-box">
             <input type="text" id="letterDisplay" readonly>
+            <input type="text" id="switchOutput" readonly>
         </div>
     </div>
-
     <script>
 function updateSwitches() {
     let switchStates = [];
-    for (let i = 1; i <= 16; i++) { // Loop only to 16
+    for (let i = 1; i <= 16; i++) {
         let switchElement = document.getElementById(`switch${i}`);
-        switchStates.push(switchElement.checked ? "1" : "0"); // 1 if checked, 0 if not
+        switchStates.push(switchElement.checked ? "1" : "0");
     }
-    console.log("Switch States: ", switchStates.join("")); // Debugging output
+    document.getElementById("switchOutput").value = switchStates.join(""); // Display binary string
 }
-</script>
-    <section class = "pyscript">
-        <div id = "mpl"></div>
-        <script type = "py" config = "pyscript.toml">
-            import numpy as np
-            import pandas as pd
-            from pyodide.http import open_url
-            from pyscript import display
-            from pyweb import pydom 
-            
-            #import weights and bias retrieved from training
-            weights = np.array([-0.002010075630518424, 0.010078065197205378, 0.017194539072421904,
-                                0.011547005383792518, -0.010078065197205378, -0.0010012523486435197,
-                                0.011547005383792518, 0.0, -0.010078065197205378,
-                                -0.0010012523486435197, 0.011547005383792518, 0.0,
-                                -0.010078065197205378, -0.011547005383792518, -0.009211323729436768,
-                                -0.008728715609439696])
-            bias = -0.02
 
-            #Get switch input
-            def get_input():
-                switch_values = []
-                
-                for i in range(1, 17):  # Ensure all 16 switches are read
-                    switch_element = pydom[f"#switch{i}"] # Access the first element
-                    switch_values.append(int(switch_element.checked))  # Convert Boolean to 0 or 1
+document.querySelectorAll(".toggle-checkbox").forEach(switchElement => {
+    switchElement.addEventListener("change", updateSwitches);
+});
+</script>
+<section class = "pyscript">
+    <div id = "mpl"></div>
+    <script type = "py" config = "pyscript.toml">
+        import numpy as np
+        import pandas as pd
+        from pyodide.http import open_url
+        from pyscript import display
+        from pyweb import pydom 
+        
+        #import weights and bias retrieved from training
+        weights = np.array([-0.002010075630518424, 0.010078065197205378, 0.017194539072421904,
+                            0.011547005383792518, -0.010078065197205378, -0.0010012523486435197,
+                            0.011547005383792518, 0.0, -0.010078065197205378,
+                            -0.0010012523486435197, 0.011547005383792518, 0.0,
+                            -0.010078065197205378, -0.011547005383792518, -0.009211323729436768,
+                            -0.008728715609439696])
+        bias = -0.02
+
+        #Get switch input
+        def get_input():
+            switch_values = []
             
-                return np.array(switch_values).reshape(1, -1)  # Ensure proper shape
+            for i in range(1, 17):  # Ensure all 16 switches are read
+                switch_element = pydom[f"#switch{i}"].element # Access the first element
+                switch_values.append(int(switch_element.checked))  # Convert Boolean to 0 or 1
+        
+            return np.array(switch_values).reshape(1, -1)  # Ensure proper shape
 
 #use perceptron formulas to predict letter and display it to the textbox
-            def classify_letter(event):
-                input_data = get_input()
-                result = np.dot(weights, input_data.T) + bias
-                predicted_class = 1 if result > 0 else 0
-                predicted_letter = 'T' if predicted_class == 1 else 'L'
-            
-                pydom["#letterDisplay"].value = predicted_letter
-                pydom["div#mpl"].html = "Prediction: " + predicted_letter  # Display result
-        </script>
-    </section>
+        def classify_letter(event):
+            input_data = get_input()
+            result = np.dot(weights, input_data.T) + bias
+            predicted_class = 1 if result > 0 else 0
+            predicted_letter = 'T' if predicted_class == 1 else 'L'
+        
+            pydom["#letterDisplay"].value = predicted_letter
+            pydom["div#mpl"].html = "Prediction: " + predicted_letter  # Display result
+    </script>
+</section>
 </body>
 
 </html>
