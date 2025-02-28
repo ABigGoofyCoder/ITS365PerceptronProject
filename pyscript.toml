@@ -1,2 +1,2 @@
-packages = ["pandas", "numpy", "pyweb"]
+packages = ["pandas", "numpy"]
 plugins = []
