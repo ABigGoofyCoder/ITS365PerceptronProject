@@ -26,18 +26,92 @@
                     Use the switches below to make a T or an L.<br>My website will use a multilayer perceptron to interpret and reflect your input!
                 </p>
             </div>
-            <div class = "switches"
-
+            <div class="switches">
+                <!-- Create 16 toggle switches -->
+                <label class="toggle">
+                    <input type="checkbox" id = "switch1" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch2" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch3" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch4" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch5" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch6" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch7" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch8" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch9" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch10" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch11" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch12" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch13" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch14" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch15" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id = "switch16" class="toggle-checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
             <div class="submit-button">
                 <button id="submit" py-click="classify_letter">Submit</button>
             </div>
         </div>
-
         <div class="text-box">
-            <input type="text" id="letterDisplay">
+            <input type="text" id="letterDisplay" readonly>
         </div>
     </div>
 
+    <script>
+function updateSwitches() {
+    let switchStates = [];
+    for (let i = 1; i <= 16; i++) { // Loop only to 16
+        let switchElement = document.getElementById(`switch${i}`);
+        switchStates.push(switchElement.checked ? "1" : "0"); // 1 if checked, 0 if not
+    }
+    console.log("Switch States: ", switchStates.join("")); // Debugging output
+}
+</script>
     <section class = "pyscript">
         <div id = "mpl"></div>
         <script type = "py" config = "pyscript.toml">
@@ -60,27 +134,21 @@
             def get_input():
                 switch_values = []
                 
-                for i in range(1, 16):
-                    # Use pydom to retrieve the switch input element, and access the checked property
-                    switch_element = pydom[f"#switch{i}"][0]
-                    
-                    if switch_element:
-                        switch_values.append(int(switch_element.checked))  # 1 for checked (on), 0 for unchecked (off)
-                    else:
-                        switch_values.append(0)  # Default to 0 if the element is not found
-                
-                np_switches = np.array(switch_values).reshape(1, 0)  # Reshape to match expected input format
-                return np_switches
+                for i in range(1, 17):  # Ensure all 16 switches are read
+                    switch_element = pydom[f"#switch{i}"] # Access the first element
+                    switch_values.append(int(switch_element.checked))  # Convert Boolean to 0 or 1
+            
+                return np.array(switch_values).reshape(1, -1)  # Ensure proper shape
 
-            #use perceptron formulas to predict letter and display it to the textbox
+#use perceptron formulas to predict letter and display it to the textbox
             def classify_letter(event):
-                input = get_input()
-                result = np.dot(weights, input.T) + bias
+                input_data = get_input()
+                result = np.dot(weights, input_data.T) + bias
                 predicted_class = 1 if result > 0 else 0
                 predicted_letter = 'T' if predicted_class == 1 else 'L'
-                pydom["#letterDisplay"].value = predicted_letter
-                pydom["div#mpl"].html = "hello"
             
+                pydom["#letterDisplay"].value = predicted_letter
+                pydom["div#mpl"].html = "Prediction: " + predicted_letter  # Display result
         </script>
     </section>
 </body>
