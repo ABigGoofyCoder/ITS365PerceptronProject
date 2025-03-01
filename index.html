@@ -225,7 +225,7 @@
                     prediction = predict(user_input, weights, bias)
                     
                     predStr = str(prediction)
-                    predicted_class = "Predicted Shape: " + text1 
+                    predicted_class = "Predicted Shape: " + predStr 
                     pydom['letterDisplay'].content =  predicted_class
                     pydom["div#mpl"].html = predicted_class
             </script>
