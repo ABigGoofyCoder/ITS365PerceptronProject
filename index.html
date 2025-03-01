@@ -175,7 +175,7 @@
                                      -0.0010012523486435197, 0.011547005383792518, 0.0,
                                      -0.010078065197205378, -0.011547005383792518, -0.009211323729436768,
                                      -0.008728715609439696 ])
-                bias = -0.02
+                bias = -0.01
             
                 def activation_function(z):
                     return np.where(z >= 0, 1, -1)
@@ -187,21 +187,21 @@
             
                 def get_np_switch_values():
                     s1 = int(pydom["#S1"][0].value)
-                    s2 = int(pydom["#S2"][0].value)
-                    s3 = int(pydom["#S3"][0].value)
-                    s4 = int(pydom["#S4"][0].value)
-                    s5 = int(pydom["#S5"][0].value)
-                    s6 = int(pydom["#S6"][0].value)
-                    s7 = int(pydom["#S7"][0].value)
-                    s8 = int(pydom["#S8"][0].value)
-                    s9 = int(pydom["#S9"][0].value)
-                    s10 = int(pydom["#S10"][0].value)
-                    s11 = int(pydom["#S11"][0].value)
-                    s12 = int(pydom["#S12"][0].value)
-                    s13 = int(pydom["#S13"][0].value)
-                    s14 = int(pydom["#S14"][0].value)
-                    s15 = int(pydom["#S15"][0].value)
-                    s16 = int(pydom["#S16"][0].value)
+                    s2 = int(pydom["#S2"][1].value)
+                    s3 = int(pydom["#S3"][2].value)
+                    s4 = int(pydom["#S4"][3].value)
+                    s5 = int(pydom["#S5"][4].value)
+                    s6 = int(pydom["#S6"][5].value)
+                    s7 = int(pydom["#S7"][6].value)
+                    s8 = int(pydom["#S8"][7].value)
+                    s9 = int(pydom["#S9"][8].value)
+                    s10 = int(pydom["#S10"][9].value)
+                    s11 = int(pydom["#S11"][10].value)
+                    s12 = int(pydom["#S12"]11].value)
+                    s13 = int(pydom["#S13"][12].value)
+                    s14 = int(pydom["#S14"][13].value)
+                    s15 = int(pydom["#S15"][14].value)
+                    s16 = int(pydom["#S16"][15].value)
     
                     switch_values = [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16]
                     np_switches = np.array(switch_values)
