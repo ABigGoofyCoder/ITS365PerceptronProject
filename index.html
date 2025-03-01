@@ -162,50 +162,71 @@
         </div>    
 
         <div class="text-box">
-
             <input type="text" id="letterDisplay" readonly>
             <input type="text" id="switchOutput" readonly>
         </div>
     </div>
-<section class="pyscript">
-    
-    <div id="mpl"></div>
-    <script type="py" config="pyscript.toml">
-        import numpy as np
-        from pyscript import document
+  <section class="pyscript">
+        <div id="mpl"></div> <!-- Hidden initially -->
 
-        # Weights and bias
-        weights = np.array([-0.002010075630518424, 0.010078065197205378, 0.017194539072421904,
-                            0.011547005383792518, -0.010078065197205378, -0.0010012523486435197,
-                            0.011547005383792518, 0.0, -0.010078065197205378,
-                            -0.0010012523486435197, 0.011547005383792518, 0.0,
-                            -0.010078065197205378, -0.011547005383792518, -0.009211323729436768,
-                            -0.008728715609439696])
-        bias = -0.02
 
-        # Function to get input from switches
-        def get_input():
-            switch_values = []
-            for i in range(1, 17):  # Read all 16 switches
-                switch_element = document.querySelector(f"#switch{i}")
-                switch_values.append(int(switch_element.checked))  # Convert Boolean to 0 or 1
-            return np.array(switch_values).reshape(1, -1)  # Ensure proper shape
-
-        # Function to classify letter based on switch input
-        def classify_letter(event):
-            input_data = get_input()
-            result = np.dot(weights, input_data.T) + bias
-            predicted_class = 1 if result > 0 else 0
-            predicted_letter = 'T' if predicted_class == 1 else 'L'
+        <script type="py" config="pyscript.toml">
+                import numpy as np
+                import pandas as pd
+                from pyodide.http import open_url
+                from pyscript import display
+                from pyweb import pydom
             
-            # Update HTML elements with prediction result
-            document.getElementById("letterDisplay").value = predicted_letter
-            document.getElementById("mpl").innerHTML = f"Prediction: {predicted_letter}"
+                # Manually set weights and bias
+                weights = np.array([])
 
-        # Bind classify_letter function to the submit button click event
-        document.getElementById("submit").element.onclick = classify_letter
-    </script>
-</section>
+                bias = 
+            
+                def activation_function(z):
+                    return np.where(z >= 0, 1, -1)
+                
+                def predict(X_test, weights, bias):
+                    linear_product = np.dot(user_input, weights) + bias
+                    y_pred = activation_function(linear_product)
+                    return ["T" if pred == 1 else "L" if pred == -1 else "Unknown" for pred in y_pred]  
+            
+                def get_np_switch_values():
+                    s1 = int(pydom["#switch1"][0].value)
+                    s2 = int(pydom["#switch2"][0].value)
+                    s3 = int(pydom["#switch3"][0].value)
+                    s4 = int(pydom["#switch4"][0].value)
+                    s5 = int(pydom["#switch5"][0].value)
+                    s6 = int(pydom["#switch6"][0].value)
+                    s7 = int(pydom["#switch7"][0].value)
+                    s8 = int(pydom["#switch8"][0].value)
+                    s9 = int(pydom["#switch9"][0].value)
+                    s10 = int(pydom["#switch10"][0].value)
+                    s11 = int(pydom["#switch11"][0].value)
+                    s12 = int(pydom["#switch12"][0].value)
+                    s13 = int(pydom["#switch13"][0].value)
+                    s14 = int(pydom["#switch14"][0].value)
+                    s15 = int(pydom["#switch15"][0].value)
+                    s16 = int(pydom["#switch16"][0].value)
+    
+                    switch_values = [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16]
+                    np_switches = np.array(switch_values)
+                    np_switches = np.expand_dims(np_switches, axis=0)
+
+                    return np_switches
+
+               
+            
+                # Process and predict function
+                def process_and_predict(event):
+                    user_input = get_np_switch_values()
+                    prediction = predict(user_input, weights, bias)
+                    
+                    text1 = str(prediction)
+                    predicted_class = "Predicted Shape: " + text1 
+                    pydom['mpl'].content =  predicted_class
+                    pydom["div#mpl"].html = predicted_class
+            </script>
+  </section>
 </body>
 
 </html>
