@@ -20,7 +20,7 @@
 
 <body>
     <div class = "all-elements">
-        <div class = "switches-and-submit-button">
+        <div class = "switches-and-submit-button">e
             <div class = "directions">
                 <p>
                     Use the switches below to make a T or an L.<br>My website will use a multilayer perceptron to interpret and reflect your input!
@@ -102,14 +102,13 @@
             <input type="text" id="switchOutput" readonly>
         </div>
     </div>
-<section class = "pyscript">
-    <div id = "mpl"></div>
-    <script type = "py" config = "pyscript.toml">
+<section class="pyscript">
+    <div id="mpl"></div>
+    <script type="py" config="pyscript.toml">
         import numpy as np
-        import pandas as pd
         from pyscript import document
-        
-        #import weights and bias retrieved from training
+
+        # Weights and bias
         weights = np.array([-0.002010075630518424, 0.010078065197205378, 0.017194539072421904,
                             0.011547005383792518, -0.010078065197205378, -0.0010012523486435197,
                             0.011547005383792518, 0.0, -0.010078065197205378,
@@ -136,6 +135,9 @@
             # Update HTML elements with prediction result
             document.getElementById("letterDisplay").value = predicted_letter
             document.getElementById("mpl").innerHTML = f"Prediction: {predicted_letter}"
+
+        # Bind classify_letter function to the submit button click event
+        document.getElementById("submit").element.onclick = classify_letter
     </script>
 </section>
 </body>
