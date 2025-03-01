@@ -119,23 +119,23 @@
         bias = -0.02
 
         # Function to get input from switches
-     def get_input():
-         switch_values = []
-         for i in range(1, 17):  # Read all 16 switches
-             switch_element = document.querySelector(f"#switch{i}")
-             switch_values.append(int(switch_element.checked))  # Convert Boolean to 0 or 1
-         return np.array(switch_values).reshape(1, -1)  # Ensure proper shape
+        def get_input():
+            switch_values = []
+            for i in range(1, 17):  # Read all 16 switches
+                switch_element = document.querySelector(f"#switch{i}")
+                switch_values.append(int(switch_element.checked))  # Convert Boolean to 0 or 1
+            return np.array(switch_values).reshape(1, -1)  # Ensure proper shape
 
-     # Function to classify letter based on switch input
-     def classify_letter(event):
-         input_data = get_input()
-         result = np.dot(weights, input_data.T) + bias
-         predicted_class = 1 if result > 0 else 0
-         predicted_letter = 'T' if predicted_class == 1 else 'L'
-         
-         # Update HTML elements with prediction result
-         document.getElementById("letterDisplay").value = predicted_letter
-         document.getElementById("mpl").innerHTML = f"Prediction: {predicted_letter}"
+        # Function to classify letter based on switch input
+        def classify_letter(event):
+            input_data = get_input()
+            result = np.dot(weights, input_data.T) + bias
+            predicted_class = 1 if result > 0 else 0
+            predicted_letter = 'T' if predicted_class == 1 else 'L'
+            
+            # Update HTML elements with prediction result
+            document.getElementById("letterDisplay").value = predicted_letter
+            document.getElementById("mpl").innerHTML = f"Prediction: {predicted_letter}"
     </script>
 </section>
 </body>
