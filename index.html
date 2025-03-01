@@ -179,7 +179,7 @@
                     y_pred = activation_function(linear_product)
                     return ["T" if pred == 1 else "L" if pred == -1 else "Unknown" for pred in y_pred]  
             
-                def get_np_switch_values():
+                def get_user_inputs():
                     s1 = int(pydom["#S1"][0].value)
                     s2 = int(pydom["#S2"][0].value)
                     s3 = int(pydom["#S3"][0].value)
@@ -203,15 +203,14 @@
 
                     return np_switches
             
-                # Process and predict function
                 def predictLetter(event):
-                    user_input = get_np_switch_values()
+                    user_input = get_user_inputs()
                     prediction = predict(user_input, weights, bias)
                     
                     predStr = str(prediction)
-                    predicted_class = "Predicted Shape: " + predStr 
-                    #pydom['mpl'].text =  predicted_class
-                    pydom["div#mpl"].html = predicted_class
+                    display_prediction = "Your letter is...an [" + predStr + "]!!!" 
+                    #pydom['mpl'].text =  display_prediction
+                    pydom["div#mpl"].html = display_prediction
             </script>
   </section>
 </body>
