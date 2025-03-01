@@ -102,21 +102,6 @@
             <input type="text" id="switchOutput" readonly>
         </div>
     </div>
-    <script>
-        
-function updateSwitches() {
-    let switchStates = [];
-    for (let i = 1; i <= 16; i++) {
-        let switchElement = document.getElementById(`switch${i}`);
-        switchStates.push(switchElement.checked ? "1" : "0");
-    }
-    document.getElementById("switchOutput").value = switchStates.join(""); // Display binary string
-}
-
-document.querySelectorAll(".toggle-checkbox").forEach(switchElement => {
-    switchElement.addEventListener("change", updateSwitches);
-});
-</script>
 <section class = "pyscript">
     <div id = "mpl"></div>
     <script type = "py" config = "pyscript.toml">
