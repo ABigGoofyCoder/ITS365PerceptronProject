@@ -1,3 +1,29 @@
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Create 4 columns of equal size */
+        gap: 10px; /* Add some space between grid items */
+        width: 100%; /* Ensure it takes up full width of the container */
+    }
+
+    .gridbox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    label {
+        margin-bottom: 5px; /* Space between the label and select */
+    }
+
+    .switch {
+        width: 60px; /* Ensure switch width is consistent */
+        text-align: center;
+    }
+</style>
+
 /* header{
     position: absolute;
     top: 0;
@@ -70,27 +96,3 @@ body {
     font-weight: bold;
 }
  */
-
-<style>
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-        gap: 10px; /* space between the buttons */
-    }
-    
-    .gridbox {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    label {
-        margin-bottom: 5px; /* space between label and select */
-    }
-
-    .switch {
-        width: 50px; /* make the switch a bit wider */
-        text-align: center;
-    }
-</style>
