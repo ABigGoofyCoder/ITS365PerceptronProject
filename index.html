@@ -167,7 +167,7 @@
     </div>
 
     <div class = "submit-button">
-        <button type = "button"> Submit L/T </button>
+        <button type = "button" py-click = "predictLetter"> Submit L/T </button>
     </div>
     
   <section class="pyscript">
@@ -220,11 +220,11 @@
                     return np_switches
             
                 # Process and predict function
-                def process_and_predict(event):
+                def predictLetter(event):
                     user_input = get_np_switch_values()
                     prediction = predict(user_input, weights, bias)
                     
-                    text1 = str(prediction)
+                    predStr = str(prediction)
                     predicted_class = "Predicted Shape: " + text1 
                     pydom['letterDisplay'].content =  predicted_class
                     pydom["div#mpl"].html = predicted_class
